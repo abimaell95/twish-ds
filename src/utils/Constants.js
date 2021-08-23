@@ -8,8 +8,6 @@ export const labelColors = [
 ];
 
 export const API = {
-    search: 'api/search',
-    email: 'api/email',
-    result: 'api/result',
-    searchHistory: 'api/search_history',
+    queue: 'v1/queue',
+    results: 'v1/results',
 };

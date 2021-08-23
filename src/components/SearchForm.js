@@ -45,8 +45,9 @@ const SearchForm = () => {
                 search_term: searchTerm,
                 number_of_tweets: numberOfTweets
             };
-            axios.post(API.search, data).then(response => {
-                const path = `search/${response.data.truncated_uuid}`;
+            axios.post(API.queue, data).then(response => {
+                console.log(response);
+                const path = `search/${response.SendMessageResult.MessageId}`;
                 setTimeout(() => {
                     history.push(path);
                     setLoading(false);

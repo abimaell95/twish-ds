@@ -10,21 +10,7 @@ const Header = () => {
                 <Link to="/">
                     <img src={logo} className="h-20 m-auto" alt="logo" />
                 </Link>
-            </div>
-            <nav className="lg:col-start-3 lg:self-center">
-                <ul className="space-x-8 text-center">
-                    <li className="inline">
-                        <Link to="/history" className="text-blue-900 font-bold hover:underline">
-                            Latest searches
-                        </Link>
-                    </li>
-                    <li className="inline">
-                        <Link to="/" className="text-blue-900 font-bold hover:underline">
-                            About
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+            </div> 
         </header>
     );
 };

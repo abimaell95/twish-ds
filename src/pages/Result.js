@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link, useHistory, useParams } from 'react-router-dom';
+import {useHistory, useParams } from 'react-router-dom';
 import { Tweet } from 'react-twitter-widgets';
 import axios from 'axios';
 
-import { Clipboard, copyToClipboard } from '../utils/Clipboard';
-import EmailForm from '../components/EmailForm';
+import {copyToClipboard } from '../utils/Clipboard';
 import Header from '../components/Header';
 import { API } from '../utils/Constants';
 
@@ -26,7 +25,7 @@ const Result = () => {
     const history = useHistory();
 
     useEffect(() => {
-        axios.post(API.result, {search_id: searchId}).then(response => {
+        axios.post(API.results, {search_id: searchId}).then(response => {
             setTimeout(() => {
                 setSearchTerm(response.data.search_term);
                 if(response.data.processing === undefined) {
@@ -76,14 +75,6 @@ const Result = () => {
                             onClick={copyLink}>Copy the link</button> and come back later.
                         </p>
                     }
-                    <p>Yo can also drop your name and your email, and we will notify you when everything is ready.</p>
-                    <p>
-                        Meanwhile, you can check 
-                        the <Link to="/" className="text-blue-900 font-bold hover:underline">searches</Link> other 
-                        people have done previously.
-                    </p>
-                    <EmailForm />
-                    <Clipboard copy={document.location.href} />
                 </main> :
                 <main className="mt-16 mx-auto text-center lg:w-3/4">
                     <ul className="space-x-4">

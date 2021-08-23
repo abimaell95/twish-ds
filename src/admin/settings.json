@@ -1,1 +1,3 @@
-{}
+{   "name" : "Twish",
+    "description" : "Tweets Classifier App",
+    "predictor":{"labels":[{"label":"Label1"},{"label":"Label2"}]}}
