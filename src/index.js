@@ -9,7 +9,8 @@ import reportWebVitals from './reportWebVitals';
 
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_HOST;
-
+axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+axios.defaults.headers.post['Accept'] = "*/*";
 
 ReactDOM.render(
   <React.StrictMode>

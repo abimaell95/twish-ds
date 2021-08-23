@@ -25,7 +25,8 @@ const Result = () => {
     const history = useHistory();
 
     useEffect(() => {
-        axios.post(API.results, {search_id: searchId}).then(response => {
+        axios.get(API.results, {params: {id: searchId}}).then(response => {
+            console.log(response);
             setTimeout(() => {
                 setSearchTerm(response.data.search_term);
                 if(response.data.processing === undefined) {

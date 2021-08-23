@@ -47,7 +47,7 @@ const SearchForm = () => {
             };
             axios.post(API.queue, data).then(response => {
                 console.log(response);
-                const path = `search/${response.SendMessageResult.MessageId}`;
+                const path = `search/${response.data.SendMessageResponse.SendMessageResult.MessageId}`;
                 setTimeout(() => {
                     history.push(path);
                     setLoading(false);
