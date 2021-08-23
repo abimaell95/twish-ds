@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import {useHistory, useParams } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import { Tweet } from 'react-twitter-widgets';
 import axios from 'axios';
 
@@ -16,21 +16,28 @@ const Result = () => {
 
     const [tweets, setTweets] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
-    const [activeTab, setActiveTab] = useState(settings.predictor.labels[0].label);
+    const [activeTab, setActiveTab] = useState(settings.predictor.labels[0].id);
     const [isEmptySearch, setIsEmptySearch] = useState(false);
     const [linkCopied, setLinkCopied] = useState(false);
     const [loading, setLoading] = useState(true);
-
-    const { searchId } = useParams();
+    const testIDs = ["35ec8f16-34e1-4c6d-b3c4-d5c1aab9091f", "c01c0010-810e-4ffe-b714-92cfa45206f9"]
     const history = useHistory();
 
+
+    const reduceData = (data) =>{
+        let newData = {}
+        for(let label of Object.keys(data)){
+            newData[label] = data[label].slice(1,10); 
+        }
+        return newData;
+    } 
+
     useEffect(() => {
-        axios.get(API.results, {params: {id: searchId}}).then(response => {
-            console.log(response);
+        axios.get(API.results, {params: {id: testIDs[Math.floor(Math.random() * testIDs.length)]}}).then(response => {
             setTimeout(() => {
                 setSearchTerm(response.data.search_term);
                 if(response.data.processing === undefined) {
-                    setTweets(response.data);
+                    setTweets(reduceData(JSON.parse(response.data.data)));
                 } else if (!response.data.processing) { // Empty search
                     setIsEmptySearch(true);
                 }
@@ -81,9 +88,9 @@ const Result = () => {
                     <ul className="space-x-4">
                         { settings.predictor.labels.map(label => {
                             return (
-                                <li className={activeTab === label.label ? activeTabCSSClasses : inactiveTabCSSClasses} key={label.label}>
+                                <li className={activeTab === label.id ? activeTabCSSClasses : inactiveTabCSSClasses} key={label.id}>
                                     <button className="focus:outline-none font-semibold"
-                                    onClick={() => setActiveTab(label.label)}>
+                                    onClick={() => setActiveTab(label.id)}>
                                         {label.label}
                                     </button>
                                 </li>
