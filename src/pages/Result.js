@@ -20,7 +20,7 @@ const Result = () => {
     const [isEmptySearch, setIsEmptySearch] = useState(false);
     const [linkCopied, setLinkCopied] = useState(false);
     const [loading, setLoading] = useState(true);
-    const testIDs = ["35ec8f16-34e1-4c6d-b3c4-d5c1aab9091f", "c01c0010-810e-4ffe-b714-92cfa45206f9"]
+    const testIDs = ["7405a0a3-5a73-4e7c-a6e9-a7eb0873f28b"]
     const history = useHistory();
 
 
